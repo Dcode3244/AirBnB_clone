@@ -158,7 +158,7 @@ class HBNBcommand(cmd.Cmd):
         Retrieve the number of instances of a given class."""
         argl = arg.split()
         count = 0
-        for obj in storage.all().values():
+        for obj in models.storage.all().values():
             if argl[0] == obj.__class__.__name__:
                 count += 1
         print(count)
