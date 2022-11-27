@@ -14,10 +14,15 @@ import models
 
 class HBNBcommand(cmd.Cmd):
     """command interpreter for HBNB"""
-    __classList = ["BaseModel", "User",
-                   "Place", "State",
-                   "City", "Amenity",
-                   "Review"]
+    __classList = {
+            "BaseModel",
+            "User",
+            "Place",
+            "State",
+            "City",
+            "Amenity",
+            "Review"
+    }
 
     prompt = "(hbnb) "
 
@@ -106,23 +111,22 @@ class HBNBcommand(cmd.Cmd):
         Usage: update <class name> <id> <attribute name> "<attribute value>
         """
         objD = models.storage.all()
-        argList = arg.split()
-        if len(argList) == 0:
+        argL = arg.split()
+        if len(argL) == 0:
             print("** class name missing **")
-        elif argList[0] not in HBNBcommand.__classList:
+        elif argL[0] not in HBNBcommand.__classList:
             print("** class doesn't exist **")
-        elif len(argList) < 2:
+        elif len(argL) < 2:
             print("** instance id missing **")
-        elif argList[0] + "." + argList[1] not in objD:
+        elif argL[0] + "." + argL[1] not in objD:
             print("** no instance found **")
-        elif len(argList) < 3:
+        elif len(argL) < 3:
             print("** attribute name missing **")
-        elif len(argList) < 4:
+        elif len(argL) < 4:
             print("** value missing **")
         else:
             for obj in objD.values():
-                obj.__dict__[argList[2]] = str(argList[3]
-                                               [1:len(argList[3]) - 1])
+                obj.__dict__[argL[2]] = str(argL[3][1:len(argL[3]) - 1])
                 models.storage.save()
 
 
