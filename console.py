@@ -121,7 +121,8 @@ class HBNBcommand(cmd.Cmd):
             print("** value missing **")
         else:
             for obj in objD.values():
-                obj.__dict__[argList[2]] = str(argList[3][1:len(argList[3]) - 1])
+                obj.__dict__[argList[2]] = str(argList[3]
+                                               [1:len(argList[3]) - 1])
                 models.storage.save()
 
 
