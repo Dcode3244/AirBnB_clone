@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """ contains the entry point of the command interpreter """
+
 import cmd
+import re
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from models.user import User
@@ -26,12 +28,33 @@ class HBNBcommand(cmd.Cmd):
 
     prompt = "(hbnb) "
 
+    def default(self, arg):
+        """Default behavior for cmd module when input is invalid"""
+        argdict = {
+            "all": self.do_all,
+            "show": self.do_show,
+            "destroy": self.do_destroy,
+            "count": self.do_count,
+            "update": self.do_update
+        }
+        match = re.search(r"\.", arg)
+        if match is not None:
+            argl = [arg[:match.span()[0]], arg[match.span()[1]:]]
+            match = re.search(r"\((.*?)\)", argl[1])
+            if match is not None:
+                command = [argl[1][:match.span()[0]], match.group()[1:-1]]
+                if command[0] in argdict.keys():
+                    call = "{} {}".format(argl[0], command[1])
+                    return argdict[command[0]](call)
+        print("*** Unknown syntax: {}".format(arg))
+        return False
+
     def do_quit(self, arg):
-        """quit command exits the program\n"""
+        """quit command exits the program"""
         return True
 
     def do_EOF(self, arg):
-        """EOF command exits the program\n"""
+        """EOF command exits the program"""
         print()
         return True
 
@@ -41,7 +64,7 @@ class HBNBcommand(cmd.Cmd):
 
     def do_create(self, cls):
         """createa a new instance of BaseModel, and
-        saves it (to the JSON file) and prints the id\n"""
+        saves it (to the JSON file) and prints the id"""
         if len(cls) == 0:
             print("** class name missing **")
         elif cls not in HBNBcommand.__classList:
@@ -53,7 +76,7 @@ class HBNBcommand(cmd.Cmd):
 
     def do_show(self, args):
         """prints the string representation of an instance based
-        on the class name and id\n"""
+        on the class name and id"""
         objD = models.storage.all()
         argList = args.split()
         if len(argList) == 0:
@@ -70,7 +93,7 @@ class HBNBcommand(cmd.Cmd):
             print(obj)
 
     def do_destroy(self, args):
-        """deletes an instance based on the class name and id \n"""
+        """deletes an instance based on the class name and id"""
         objD = models.storage.all()
         argList = args.split()
         if len(argList) == 0:
@@ -129,6 +152,16 @@ class HBNBcommand(cmd.Cmd):
             for obj in objD.values():
                 obj.__dict__[argL[2]] = str(argL[3][1:len(argL[3]) - 1])
                 models.storage.save()
+
+    def do_count(self, arg):
+        """Usage: count <class> or <class>.count()
+        Retrieve the number of instances of a given class."""
+        argl = arg.split()
+        count = 0
+        for obj in storage.all().values():
+            if argl[0] == obj.__class__.__name__:
+                count += 1
+        print(count)
 
 
 if __name__ == '__main__':
