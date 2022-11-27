@@ -36,6 +36,7 @@ class HBNBcommand(cmd.Cmd):
         return True
 
     def emptyline(self):
+        """Does notting when empty line is received"""
         pass
 
     def do_create(self, cls):
