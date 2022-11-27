@@ -158,14 +158,19 @@ class HBNBcommand(cmd.Cmd):
 
         if len(argL) == 0:
             print("** class name missing **")
+            return False
         elif argL[0] not in HBNBcommand.__classList:
             print("** class doesn't exist **")
+            return False
         elif len(argL) < 2:
             print("** instance id missing **")
+            return False
         elif argL[0] + "." + argL[1] not in objD:
             print("** no instance found **")
+            return False
         elif len(argL) < 3:
             print("** attribute name missing **")
+            return False
         elif len(argL) < 4:
             try:
                 type(eval(argL[2])) != dict
