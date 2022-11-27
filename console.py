@@ -33,7 +33,7 @@ def parse(arg):
         return retl
 
 
-class HBNBcommand(cmd.Cmd):
+class HBNBCommand(cmd.Cmd):
     """command interpreter for HBNB"""
     __classList = {
             "BaseModel",
