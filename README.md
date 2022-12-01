@@ -139,7 +139,7 @@ all NonExistent Clas
 
 ### update
 Usage: `update <class name> <instance id> <attribute name> "<attribute value>"`
-Typing `update` with all the required arguments will update that instance' attribute (4th argument) with the value (5th argument). If any of the arguments after update are invalid or missing, an error message will be printed. Anything after the 5th argument will not be used. However, `id`, `created_at`, and `updated_at` cannot be updated, and only string/integer/float arguments can be updated.
+Typing `update` with all the required arguments will update that instance attribute (4th argument) with the value (5th argument). If any of the arguments after update are invalid or missing, an error message will be printed. Anything after the 5th argument will not be used. However, `id`, `created_at`, and `updated_at` cannot be updated, and only string/integer/float arguments can be updated.
 
 ```
 (hbnb) update
