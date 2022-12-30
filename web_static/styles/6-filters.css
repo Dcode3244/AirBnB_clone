@@ -1,0 +1,95 @@
+.filters {
+  background-color: #fff;
+  height: 70px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.filters button {
+  font-size: 18px;
+  background-color: #ff5a5f;
+  color: #fff;
+  height: 48px;
+  width: 20%;
+  border: none;
+  border-radius: 4px;
+  float: right;
+  margin: 11px 30px;
+}
+
+.filters button:hover {
+  opacity: 90%;
+}
+
+/************** 5-more filters *****************/
+.amenities,
+.locations {
+  height: 100%;
+  width: 25%;
+  display: inline-block;
+  position: relative;
+}
+
+.locations {
+  border-right: 1px solid #ddd;
+}
+
+.filters h3 {
+  font-weight: 600;
+  height: 50%;
+  box-sizing: border-box;
+  padding: 20px 0 0 35px;
+  font-size: 16px;
+}
+
+.filters h4 {
+  font-weight: 400;
+  font-size: 14px;
+  height: 50%;
+  box-sizing: border-box;
+  padding: 2px 0 0 35px;
+}
+
+/* ********** task 6 ************ */
+
+.filters .popover {
+  background-color: #fafafa;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: none;
+  position: absolute;
+}
+
+.filters .locations:hover .popover,
+.filters .amenities:hover .popover {
+  display: block;
+}
+
+.locations .popover {
+  box-sizing: border-box;
+  padding: 30px 0 5px 25px;
+}
+
+.locations .popover ul {
+  margin: 3px 0 20px 15px;
+}
+
+.locations .popover li {
+  margin-bottom: 4px;
+}
+
+.amenities ul {
+  left: -4px;
+  box-sizing: border-box;
+  padding: 25px 0 20px 40px;
+}
+.amenities li {
+  margin-bottom: 5px;
+}
+
+.filters .popover h2 {
+  font-size: 16px;
+  font-weight: bold;
+}
