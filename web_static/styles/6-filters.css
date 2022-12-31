@@ -23,8 +23,8 @@
 }
 
 /************** 5-more filters *****************/
-.amenities,
-.locations {
+.filters .amenities,
+.filters .locations {
   height: 100%;
   width: 25%;
   display: inline-block;
@@ -80,12 +80,12 @@
   margin-bottom: 4px;
 }
 
-.amenities ul {
+.filters .amenities ul {
   left: -4px;
   box-sizing: border-box;
   padding: 25px 0 20px 40px;
 }
-.amenities li {
+.filters .amenities li {
   margin-bottom: 5px;
 }
 
